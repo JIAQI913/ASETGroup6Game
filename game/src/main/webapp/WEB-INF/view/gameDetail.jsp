@@ -221,6 +221,13 @@
 	</script>
 	</head>
 <body>
+	${gameName}</br>
+	${gameUrl}</br>
+	${gameSummary}</br>
+	${developers}</br>
+	${publishers}</br>
+	${gameRelated}</br>
+	
 	<div id="container">
 		<div id="head" align="left">
 			<div >	<img src="resources/img/logo.png" />
@@ -364,9 +371,7 @@
 				<li><img src="resources/img/5.jpg" /></li>
   			</ul>
   		</div>
-	</div>
-	
-	
+	</div>	
 
 </body>
 </html>

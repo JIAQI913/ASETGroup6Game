@@ -66,9 +66,9 @@ public class SearchController {
 			if (el.isJsonArray()) {
 				jsonArray = el.getAsJsonArray();
 			}
-			System.out.println(responseCount.getBody());
-			System.out.println(response.getBody());
-			System.out.println("{\"gameCount\":"+responseCount.getBody()+",\"gameDetail\":"+response.getBody()+"}");
+//			System.out.println(responseCount.getBody());
+//			System.out.println(response.getBody());
+//			System.out.println("{\"gameCount\":"+responseCount.getBody()+",\"gameDetail\":"+response.getBody()+"}");
 
 			// traversal the list
 			List<Game> gameList = new ArrayList<Game>();

@@ -65,8 +65,9 @@ body {
 
 <script type="text/javascript">
 	//	var temp;
-	var GameData;
+	var gameData;
 	var selectGame;
+	var gameCount;
 	function search() {
 		$
 				.ajax({
@@ -74,17 +75,19 @@ body {
 					url : "/game/Search?gameName=" + $("#searchname").val(),
 					dataType : "json",
 					success : function(data) {
-						temp = data;
-					//	alert(data.length);
-						GameData = data.gameDetail;
-						$("#resultCount").html(data.gameCount.count);
+						//	temp = data;
+						//	alert(data.length);
+						gameData = data.gameDetail;
+						gameCount=data.gameCount.count;
+						$("#resultCount").html(gameCount);
 						for (var i = 0; i < data.gameDetail.length; i++) {
-							var currentName = "<a href='javascript:void(0)' onclick='getGameDetail(); selectGame="
+							var currentName = "<a href='javascript:void(0)' onclick='selectGame="
 									+ i
-									+ ";' id='selcetGameNum"
+									+ "; getGameDetail();' id='selcetGameNum"
 									+ i
 									+ "'>"
-									+ data.gameDetail[i].name + "</a></br>";
+									+ data.gameDetail[i].name
+									+ "</a></br>";
 							$("#gameList").append(currentName);
 						}
 
@@ -95,8 +98,25 @@ body {
 				});
 	}
 	function getGameDetail() {
-		alert(temp);
+		document.getElementById("selectGameDetail").value = JSON.stringify(gameData[selectGame]);
+		document.forms.detail.submit();
 	}
+	/* 	function getGameDetail(){
+	 var game= "{'RID':'123'}";
+	 alert(game);
+	 $.ajax({
+	 url: "/game/getGameDetail",//ajax提交路径
+	 type: "post",//提交方式
+	 data: game,//提交参数
+	 contentType: "application/json",
+	 success: function () {//ajax请求完成时执行，result为返回的结果
+	 alert();
+	 },
+	 error: function () {
+	 alert("ajax failed");
+	 }
+	 });
+	 } */
 	/* 	$(function(){
 	 $(document).click(function (e) {
 	 alert($(e.target).attr('id'));
@@ -118,6 +138,10 @@ body {
 
 </head>
 <body>
+	<form action="getGameDetail" method="post" name="detail">
+		<input type="hidden" name="selectGameDetail" id="selectGameDetail"
+			value="">
+	</form>
 	<div id="container">
 		<div id="head" align="left">
 			<div>
@@ -186,5 +210,15 @@ body {
 			</div>
 			<div id="gameList"></div>
 		</div>
+		
+	<div class="easyui-pagination" style="border:1px solid #ccc;"
+	        data-options="
+	            total: gameCount,
+	            pageSize: 10,
+	            layout:['list','sep','first','prev','links','next','last','sep','refresh'],
+	            onSelectPage: function(pageNumber, pageSize){
+	                $('#content').panel('refresh', 'show_content.php?page='+pageNumber);
+	            }">
+	</div>
 </body>
 </html>
