@@ -68,39 +68,48 @@ body {
 	var gameData;
 	var selectGame;
 	var gameCount;
+	var currentPage = 1;
 	function search() {
-		$
-				.ajax({
-					type : "get",
-					url : "/game/Search?gameName=" + $("#searchname").val(),
-					dataType : "json",
-					success : function(data) {
-						//	temp = data;
-						//	alert(data.length);
-						gameData = data.gameDetail;
-						gameCount=data.gameCount.count;
-						$("#resultCount").html(gameCount);
-						for (var i = 0; i < data.gameDetail.length; i++) {
-							var currentName = "<a href='javascript:void(0)' onclick='selectGame="
-									+ i
-									+ "; getGameDetail();' id='selcetGameNum"
-									+ i
-									+ "'>"
-									+ data.gameDetail[i].name
-									+ "</a></br>";
-							$("#gameList").append(currentName);
-						}
-
-					},
-					error : function(msg) {
-						alert(msg);
-					}
-				});
+		$.ajax({
+			type : "get",
+			url : "/game/Search?gameName=" + $("#searchname").val()
+					+ "&currentPage=1&limit=" + $("#pageSize").val(),
+			dataType : "json",
+			success : function(data) {
+				//	temp = data;
+				//	alert(data.length);
+				gameData = data.gameDetail;
+				gameCount = data.gameCount.count;
+				$("#resultCount").html(gameCount);
+				for (var i = 0; i < data.gameDetail.length; i++) {
+					var currentName = "<a href='/game/getGameDetail?json="
+							+ JSON.stringify(gameData[i]) + "'>"
+							+ data.gameDetail[i].name + "</a></br>";
+					/*	var currentName = "<a href='javascript:void(0)' onclick='selectGame="
+						+ i
+						+ "; getGameDetail();' id='selcetGameNum"
+						+ i
+						+ "'>"
+						+ data.gameDetail[i].name
+						+ "</a></br>"; */
+					$("#gameList").append(currentName);
+				}
+				for (var j = 1; j < gameCount / 10 + 1; j++) {
+					var page = "<a href='javascript:void(0)'>" + j
+							+ "</a>&nbsp;"
+					$("#pageList").append(page);
+				}
+			},
+			error : function(msg) {
+				alert(msg);
+			}
+		});
 	}
-	function getGameDetail() {
-		document.getElementById("selectGameDetail").value = JSON.stringify(gameData[selectGame]);
-		document.forms.detail.submit();
-	}
+	/* 	function getGameDetail() {
+	 document.getElementById("selectGameDetail").value = JSON
+	 .stringify(gameData[selectGame]);
+	 document.forms.detail.submit();
+	 } */
 	/* 	function getGameDetail(){
 	 var game= "{'RID':'123'}";
 	 alert(game);
@@ -138,25 +147,28 @@ body {
 
 </head>
 <body>
-	<form action="getGameDetail" method="post" name="detail">
+	<!-- 	<form action="getGameDetail" method="post" name="detail">
 		<input type="hidden" name="selectGameDetail" id="selectGameDetail"
 			value="">
-	</form>
+	</form> -->
 	<div id="container">
 		<div id="head" align="left">
 			<div>
 				<img src="resources/img/logo.png" />
 			</div>
 		</div>
-		<div id="search">
+		<div id="search" style="margin-bottom: 20px">
 			<div class="easyui-tabs"
 				style="width: 1080px; height: 120px; color: #AAAAAA">
 				<div title="Name" style="margin: 20px">
 					<form class="form">
 						<div>
 							<input type="text" class="searchtext" id="searchname"
-								placeholder="Search for Game Name" name="searchtext" /> <input
-								type="button" onclick="search()" class="searchbutton"
+								placeholder="Search for Game Name" name="searchtext" />
+								Page Size:<select id="pageSize"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select>
+						</div>
+						<div>
+							<input type="button" onclick="search()" class="searchbutton"
 								value="Search" />
 						</div>
 					</form>
@@ -209,16 +221,7 @@ body {
 				Search Result: <span id="resultCount"> </span>
 			</div>
 			<div id="gameList"></div>
+			<div id="pageList"></div>
 		</div>
-		
-	<div class="easyui-pagination" style="border:1px solid #ccc;"
-	        data-options="
-	            total: gameCount,
-	            pageSize: 10,
-	            layout:['list','sep','first','prev','links','next','last','sep','refresh'],
-	            onSelectPage: function(pageNumber, pageSize){
-	                $('#content').panel('refresh', 'show_content.php?page='+pageNumber);
-	            }">
-	</div>
 </body>
 </html>

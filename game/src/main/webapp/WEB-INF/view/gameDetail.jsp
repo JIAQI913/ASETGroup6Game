@@ -217,16 +217,21 @@
 		    itemWidth: 600,
 		    itemMargin: 5
 		  });
+		  $.ajax({
+				type : "get",
+				url : "/game/showGameDetail",
+				dataType : "json",
+				success : function(data) {
+					
+				},
+				error : function() {
+					alert("Failed");
+				}
+			});
 		});
 	</script>
 	</head>
 <body>
-	${gameName}</br>
-	${gameUrl}</br>
-	${gameSummary}</br>
-	${developers}</br>
-	${publishers}</br>
-	${gameRelated}</br>
 	
 	<div id="container">
 		<div id="head" align="left">
