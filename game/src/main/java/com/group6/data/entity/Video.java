@@ -1,5 +1,11 @@
 package com.group6.data.entity;
 
+/**
+ * Class about game's video.
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class Video {
 	private String name;
 	private String video_id;

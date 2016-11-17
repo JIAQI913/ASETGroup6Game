@@ -1,7 +1,12 @@
 package com.group6.data.entity;
 
 import java.util.List;
-
+/**
+ * Class about transfered game(change all private members to be String).
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class GameT {
 	private int id;
 	private String name;

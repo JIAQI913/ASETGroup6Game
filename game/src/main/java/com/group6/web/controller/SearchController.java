@@ -30,12 +30,19 @@ import com.group6.web.interact.InteractWithIGDB;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
+/**
+ * the controller that search game.
+ * 
+ * @author Qihui Fan
+ *
+ */
 @Controller
 public class SearchController {
-
+	/**
+	 * search game by name.
+	 */
 	@RequestMapping("/Search")
-	public void SearchController(HttpServletRequest req, HttpServletResponse resp) {
+	public void SearchNameController(HttpServletRequest req, HttpServletResponse resp) {
 		ArrayList<Game> list = new ArrayList<Game>();
 		String searchName = req.getParameter("gameName");
 		int limit = Integer.parseInt(req.getParameter("limit"));

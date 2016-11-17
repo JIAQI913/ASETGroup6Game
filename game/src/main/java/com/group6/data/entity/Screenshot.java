@@ -1,5 +1,11 @@
 package com.group6.data.entity;
 
+/**
+ * Class about game's screenshot.
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class Screenshot {
 	private String cloudinary_id;
 	private int width;

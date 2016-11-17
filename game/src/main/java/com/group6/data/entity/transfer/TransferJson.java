@@ -11,12 +11,35 @@ import com.google.gson.JsonParser;
 import com.group6.data.entity.Game;
 import com.group6.web.interact.InteractWithIGDB;
 
+/**
+ * Class about some methods that transfer between object and json.
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class TransferJson {
+	/**
+	 * Transfer object to json_String.
+	 * 
+	 * @param o
+	 *            the object.
+	 * @return json_String.
+	 */
 	public static String objectToJson(Object o) {
 		Gson gson = new Gson();
 		return gson.toJson(o);
 	}
 
+	/**
+	 * Transfer json_String to list of object.
+	 * 
+	 * @param json
+	 *            the target json_String.
+	 * @param c
+	 *            the Class that will be transfered.
+	 * 
+	 * @return list of object.
+	 */
 	public static <C> List<C> jsonToObject(String json, Class<C> c) {
 		JsonParser parser = new JsonParser();
 
@@ -53,12 +76,12 @@ public class TransferJson {
 		return list;
 	}
 
-//	public static void main(String[] args) {
-//
-//		String response = InteractWithIGDB.getGameList("fallout", 0, 5);
-//		List<Game> list=new ArrayList<Game>();
-//		list=jsonToObject(response, Game.class);
-//		System.out.println(list.get(0).getName());
-//	}
+	// public static void main(String[] args) {
+	//
+	// String response = InteractWithIGDB.getGameList("fallout", 0, 5);
+	// List<Game> list=new ArrayList<Game>();
+	// list=jsonToObject(response, Game.class);
+	// System.out.println(list.get(0).getName());
+	// }
 
 }

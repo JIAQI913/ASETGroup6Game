@@ -1,5 +1,11 @@
 package com.group6.data.entity;
 
+/**
+ * Class about game's cover.
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class Cover {
 	private String cloudinary_id;
 	private int width;

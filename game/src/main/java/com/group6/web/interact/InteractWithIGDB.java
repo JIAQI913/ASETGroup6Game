@@ -14,9 +14,24 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+/**
+ * Class about interact with IGDB.com.
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class InteractWithIGDB {
 	final static String ID = "xxrvfrwHt6mshHaQgrsADlFVlgAZp1Q8y6sjsnql2D1H2MpWBz";
 
+	/**
+	 * a method that gets information from IGDB.
+	 * 
+	 * @param type
+	 *            the type of item that will be searched.
+	 * @param i
+	 *            the items that will be searched.
+	 * @return the list of searching results .
+	 */
 	public static List<String> getTypeString(String type, List<Integer> i) {
 		// System.out.println(FormatList.changeToString(i));
 		try {
@@ -53,12 +68,28 @@ public class InteractWithIGDB {
 		return null;
 	}
 
+	/**
+	 * a method that gets information from IGDB.
+	 * 
+	 * @param type
+	 *            the type of item that will be searched.
+	 * @param i
+	 *            the items that will be searched.
+	 * @return the list of searching results .
+	 */
 	public static List<String> getTypeString(String type, int i) {
 		List l = new ArrayList();
 		l.add(i);
 		return getTypeString(type, l);
 	}
 
+	/**
+	 * a method that gets number of results from IGDB.
+	 * 
+	 * @param gameName
+	 *            the game name that users searches.
+	 * @return the number of results .
+	 */
 	public static String getGameCount(String gameName) {
 		try {
 			HttpResponse<String> responseCount = Unirest
@@ -72,6 +103,17 @@ public class InteractWithIGDB {
 		return null;
 	}
 
+	/**
+	 * a main method that gets games from IGDB.
+	 * 
+	 * @param gameName
+	 *            the game name that users searches.
+	 * @param offset
+	 *            the page needed.
+	 * @param limit
+	 *            the number of results in one page.
+	 * @return the result.
+	 */
 	public static String getGameList(String gameName, int offset, int limit) {
 		try {
 			HttpResponse<String> response = Unirest

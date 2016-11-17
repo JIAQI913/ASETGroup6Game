@@ -2,6 +2,12 @@ package com.group6.data.entity;
 
 import java.util.List;
 
+/**
+ * Class about game.
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class Game {
 	private int id;
 	private String name;

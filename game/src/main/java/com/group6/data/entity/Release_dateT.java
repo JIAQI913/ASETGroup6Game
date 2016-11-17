@@ -1,5 +1,11 @@
 package com.group6.data.entity;
 
+/**
+ * Class about game's transfered release date.
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class Release_dateT {
 	private String category;
 	private String platform;

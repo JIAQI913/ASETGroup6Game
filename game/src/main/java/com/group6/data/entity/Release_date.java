@@ -1,5 +1,11 @@
 package com.group6.data.entity;
 
+/**
+ * Class about game's release date.
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class Release_date {
 	private int category;
 	private int platform;

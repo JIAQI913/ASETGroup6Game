@@ -22,7 +22,20 @@ import com.group6.data.format.FormatList;
 import com.group6.data.format.FormatTime;
 import com.group6.web.interact.InteractWithIGDB;
 
+/**
+ * Class about some methods that transfer item's id to be String.
+ * 
+ * @author Qihui Fan
+ *
+ */
 public class TransferGame {
+	/**
+	 * Transfer category.
+	 * 
+	 * @param i
+	 *            category's id.
+	 * @return String that id represents.
+	 */
 	public static String transferCategory(int i) {
 		String str = "";
 		switch (i) {
@@ -47,6 +60,13 @@ public class TransferGame {
 		return str;
 	}
 
+	/**
+	 * Transfer region.
+	 * 
+	 * @param i
+	 *            region's id.
+	 * @return String that id represents.
+	 */
 	public static String transferRegion(int i) {
 		String str = "";
 		switch (i) {
@@ -80,6 +100,13 @@ public class TransferGame {
 		return str;
 	}
 
+	/**
+	 * Transfer release date.
+	 * 
+	 * @param date
+	 *            game's original release date.
+	 * @return the transfered release date.
+	 */
 	public static Release_dateT transferRelease_date(Release_date date) {
 		Release_dateT dateT = new Release_dateT();
 		dateT.setCategory(transferCategory(date.getCategory()));
@@ -89,6 +116,13 @@ public class TransferGame {
 		return dateT;
 	}
 
+	/**
+	 * Transfer list of release date.
+	 * 
+	 * @param date
+	 *            game's original list of release date.
+	 * @return the transfered list of release date.
+	 */
 	public static List<Release_dateT> transferRelease_date(List<Release_date> date) {
 		List<Release_dateT> dateT = new ArrayList<Release_dateT>();
 		for (Release_date temp : date) {
@@ -97,6 +131,15 @@ public class TransferGame {
 		return dateT;
 	}
 
+	/**
+	 * Transfer screenshot.
+	 * 
+	 * @param shot
+	 *            game's original screenshot.
+	 * @param size
+	 *            screenshot's size.
+	 * @return the transfered screenshot.
+	 */
 	public static ScreenshotT transferScreenshot(Screenshot shot, String size) {
 		ScreenshotT shotT = new ScreenshotT();
 		shotT.setCloudinary_id(
@@ -106,6 +149,15 @@ public class TransferGame {
 		return shotT;
 	}
 
+	/**
+	 * Transfer list of screenshot.
+	 * 
+	 * @param shot
+	 *            list of game's original screenshot.
+	 * @param size
+	 *            screenshot's size.
+	 * @return the transfered list of screenshot.
+	 */
 	public static List<ScreenshotT> transferScreenshot(List<Screenshot> shot, String size) {
 		List<ScreenshotT> shotT = new ArrayList<ScreenshotT>();
 		for (Screenshot temp : shot) {
@@ -114,6 +166,13 @@ public class TransferGame {
 		return shotT;
 	}
 
+	/**
+	 * Transfer video.
+	 * 
+	 * @param shot
+	 *            game's original video.
+	 * @return the transfered video.
+	 */
 	public static VideoT transferVideo(Video video) {
 		VideoT videoT = new VideoT();
 		videoT.setName(video.getName());
@@ -121,6 +180,13 @@ public class TransferGame {
 		return videoT;
 	}
 
+	/**
+	 * Transfer list of video.
+	 * 
+	 * @param shot
+	 *            list of game's original video.
+	 * @return the transfered list of video.
+	 */
 	public static List<VideoT> transferVideo(List<Video> video) {
 		List<VideoT> videoT = new ArrayList<VideoT>();
 		for (Video temp : video) {
@@ -128,7 +194,15 @@ public class TransferGame {
 		}
 		return videoT;
 	}
-
+	/**
+	 * Transfer cover.
+	 * 
+	 * @param shot
+	 *            game's original cover.
+	 * @param size
+	 *            cover's size.
+	 * @return the transfered cover.
+	 */
 	public static CoverT transferCover(Cover cover, String size) {
 		CoverT coverT = new CoverT();
 		coverT.setCloudinary_id(
@@ -137,22 +211,29 @@ public class TransferGame {
 		coverT.setWidth(cover.getWidth());
 		return coverT;
 	}
-
+	/**
+	 * Transfer game to gameT which can be understood by users.
+	 * 
+	 * @param game
+	 *            the original game.
+	 * @param gameT
+	 *            the transfered game.
+	 */
 	public static void transferGame(Game game, GameT gameT) {
 		gameT.setId(game.getId());
 		gameT.setName(game.getName());
-//		System.out.println(game.getAlternative_names());
-		if (game.getAlternative_names()!=null)
+		// System.out.println(game.getAlternative_names());
+		if (game.getAlternative_names() != null)
 			gameT.setAlternative_names(game.getAlternative_names());
 		gameT.setUrl(game.getUrl());
 		gameT.setSummary(game.getSummary());
 		gameT.setGame(FormatList.changeToString(InteractWithIGDB.getTypeString("games", game.getGame())));
 		gameT.setStoryline(game.getStoryline());
-		if (game.getDevelopers()!=null)
+		if (game.getDevelopers() != null)
 			gameT.setDevelopers(InteractWithIGDB.getTypeString("companies", game.getDevelopers()));
-		if (game.getPublishers()!=null)
+		if (game.getPublishers() != null)
 			gameT.setPublishers(InteractWithIGDB.getTypeString("companies", game.getPublishers()));
-		if (game.getGame_engines()!=null)
+		if (game.getGame_engines() != null)
 			gameT.setGame_engines(InteractWithIGDB.getTypeString("game_engines", game.getGame_engines()));
 		gameT.setCategory(transferCategory(game.getCategory()));
 		// gameT.setIGNScore(iGNScore);
@@ -160,60 +241,61 @@ public class TransferGame {
 		// gameT.setOurScore();
 		// gameT.setScoreNumber(scoreNumber);
 		gameT.setAggregated_rating(game.getAggregated_rating());
-		if (game.getGame_modes()!=null)
+		if (game.getGame_modes() != null)
 			gameT.setGame_modes(InteractWithIGDB.getTypeString("game_modes", game.getGame_modes()));
-		if (game.getKeywords()!=null)
+		if (game.getKeywords() != null)
 			gameT.setKeywords(InteractWithIGDB.getTypeString("keywords", game.getKeywords()));
-		if (game.getThemes()!=null)
+		if (game.getThemes() != null)
 			gameT.setThemes(InteractWithIGDB.getTypeString("themes", game.getThemes()));
-		if (game.getGenres()!=null)
+		if (game.getGenres() != null)
 			gameT.setGenres(InteractWithIGDB.getTypeString("genres", game.getGenres()));
 		gameT.setFirst_release_date(FormatTime.changeToSimpleDate(game.getFirst_release_date()));
-		if (game.getRelease_dates()!=null)
+		if (game.getRelease_dates() != null)
 			gameT.setRelease_dates(transferRelease_date(game.getRelease_dates()));
-		if (game.getScreenshots()!=null)
+		if (game.getScreenshots() != null)
 			gameT.setScreenshots(transferScreenshot(game.getScreenshots(), "screenshot_med"));
-		if (game.getVideos()!=null)
+		if (game.getVideos() != null)
 			gameT.setVideos(transferVideo(game.getVideos()));
 		gameT.setCover(transferCover(game.getCover(), "cover_big"));
 	}
 
-//	public static void main(String[] args) {
-//		String str = InteractWithIGDB.getGameList("fallout", 0, 1);
-//		JsonParser parser = new JsonParser();
-//
-//		// JsonParser can transfer a string with json format into
-//		// JsonElement
-//		JsonElement el = parser.parse(str);
-//
-//		// JsonElement===>>>JsonObject
-//		// JsonObject jsonObj = null;
-//		// if(el.isJsonObject()){
-//		// jsonObj = el.getAsJsonObject();
-//		// }
-//
-//		// JsonElement===>>>JsonArray
-//		JsonArray jsonArray = null;
-//		if (el.isJsonArray()) {
-//			jsonArray = el.getAsJsonArray();
-//		}
-//		// System.out.println(responseCount.getBody());
-//		// System.out.println(response.getBody());
-//		// System.out.println("{\"gameCount\":"+responseCount.getBody()+",\"gameDetail\":"+response.getBody()+"}");
-//
-//		// traversal the list
-//		List<Game> gameList = new ArrayList<Game>();
-//		Game game = new Game();
-//		Iterator it = jsonArray.iterator();
-//		Gson gson = new Gson();
-//		while (it.hasNext()) {
-//			JsonElement e = (JsonElement) it.next();
-//			// JsonElement===>>>JavaBean
-//			game = gson.fromJson(e, Game.class);
-//			gameList.add(game);
-//		}
-//		GameT gameT = new GameT();
-//		transferGame(gameList.get(0), gameT);
-//		System.out.println(gson.toJson(gameT));
-//	}
+	// public static void main(String[] args) {
+	// String str = InteractWithIGDB.getGameList("fallout", 0, 1);
+	// JsonParser parser = new JsonParser();
+	//
+	// // JsonParser can transfer a string with json format into
+	// // JsonElement
+	// JsonElement el = parser.parse(str);
+	//
+	// // JsonElement===>>>JsonObject
+	// // JsonObject jsonObj = null;
+	// // if(el.isJsonObject()){
+	// // jsonObj = el.getAsJsonObject();
+	// // }
+	//
+	// // JsonElement===>>>JsonArray
+	// JsonArray jsonArray = null;
+	// if (el.isJsonArray()) {
+	// jsonArray = el.getAsJsonArray();
+	// }
+	// // System.out.println(responseCount.getBody());
+	// // System.out.println(response.getBody());
+	// //
+	// System.out.println("{\"gameCount\":"+responseCount.getBody()+",\"gameDetail\":"+response.getBody()+"}");
+	//
+	// // traversal the list
+	// List<Game> gameList = new ArrayList<Game>();
+	// Game game = new Game();
+	// Iterator it = jsonArray.iterator();
+	// Gson gson = new Gson();
+	// while (it.hasNext()) {
+	// JsonElement e = (JsonElement) it.next();
+	// // JsonElement===>>>JavaBean
+	// game = gson.fromJson(e, Game.class);
+	// gameList.add(game);
+	// }
+	// GameT gameT = new GameT();
+	// transferGame(gameList.get(0), gameT);
+	// System.out.println(gson.toJson(gameT));
+	// }
 }
