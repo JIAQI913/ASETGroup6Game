@@ -34,6 +34,21 @@ public class Game {
 	private List<Video> videos;
 	private Cover cover;
 	
+	public Game(){
+		summary="";
+		storyline="";
+		screenshots=null;
+		release_dates=null;
+		videos=null;
+		game_engines=null;
+		developers=null;
+		publishers=null;
+		game_modes=null;
+		alternative_names=null;
+		keywords=null;
+		themes=null;
+		genres=null;
+	}
 	public double getAggregated_rating() {
 		return aggregated_rating;
 	}

@@ -176,7 +176,7 @@ public class TransferGame {
 	public static VideoT transferVideo(Video video) {
 		VideoT videoT = new VideoT();
 		videoT.setName(video.getName());
-		videoT.setVideo_id("https://youtu.be/" + video.getVideo_id());
+		videoT.setVideo_id("https://www.youtube.com/embed/" + video.getVideo_id());
 		return videoT;
 	}
 
@@ -194,6 +194,7 @@ public class TransferGame {
 		}
 		return videoT;
 	}
+
 	/**
 	 * Transfer cover.
 	 * 
@@ -211,6 +212,11 @@ public class TransferGame {
 		coverT.setWidth(cover.getWidth());
 		return coverT;
 	}
+
+	public static String changeSummary(String str){
+		str=str.replaceAll("\"", "");
+		return str.replaceAll("\n", " ");
+	}
 	/**
 	 * Transfer game to gameT which can be understood by users.
 	 * 
@@ -219,28 +225,18 @@ public class TransferGame {
 	 * @param gameT
 	 *            the transfered game.
 	 */
-	public static void transferGame(Game game, GameT gameT) {
-		gameT.setId(game.getId());
-		gameT.setName(game.getName());
+	public static void transferGameAPI(Game game, GameT gameT) {
 		// System.out.println(game.getAlternative_names());
-		if (game.getAlternative_names() != null)
-			gameT.setAlternative_names(game.getAlternative_names());
-		gameT.setUrl(game.getUrl());
-		gameT.setSummary(game.getSummary());
-		gameT.setGame(FormatList.changeToString(InteractWithIGDB.getTypeString("games", game.getGame())));
-		gameT.setStoryline(game.getStoryline());
 		if (game.getDevelopers() != null)
 			gameT.setDevelopers(InteractWithIGDB.getTypeString("companies", game.getDevelopers()));
 		if (game.getPublishers() != null)
 			gameT.setPublishers(InteractWithIGDB.getTypeString("companies", game.getPublishers()));
 		if (game.getGame_engines() != null)
 			gameT.setGame_engines(InteractWithIGDB.getTypeString("game_engines", game.getGame_engines()));
-		gameT.setCategory(transferCategory(game.getCategory()));
 		// gameT.setIGNScore(iGNScore);
 		// gameT.setIGNComment(iGNComment);
 		// gameT.setOurScore();
 		// gameT.setScoreNumber(scoreNumber);
-		gameT.setAggregated_rating(game.getAggregated_rating());
 		if (game.getGame_modes() != null)
 			gameT.setGame_modes(InteractWithIGDB.getTypeString("game_modes", game.getGame_modes()));
 		if (game.getKeywords() != null)
@@ -249,16 +245,30 @@ public class TransferGame {
 			gameT.setThemes(InteractWithIGDB.getTypeString("themes", game.getThemes()));
 		if (game.getGenres() != null)
 			gameT.setGenres(InteractWithIGDB.getTypeString("genres", game.getGenres()));
-		gameT.setFirst_release_date(FormatTime.changeToSimpleDate(game.getFirst_release_date()));
 		if (game.getRelease_dates() != null)
 			gameT.setRelease_dates(transferRelease_date(game.getRelease_dates()));
+	}
+
+	public static void transferGameStatic(Game game, GameT gameT) {
+		if (game.getAlternative_names() != null)
+			gameT.setAlternative_names(game.getAlternative_names());
+		gameT.setId(game.getId());
+		gameT.setName(game.getName());
+		gameT.setUrl(game.getUrl());
+		gameT.setSummary(changeSummary(game.getSummary()));
+		gameT.setGame(FormatList.changeToString(InteractWithIGDB.getTypeString("games", game.getGame())));
+		gameT.setStoryline(game.getStoryline());
+		//System.out.println(gameT.getStoryline());
+		gameT.setCategory(transferCategory(game.getCategory()));
+		gameT.setAggregated_rating(game.getAggregated_rating());
+		gameT.setFirst_release_date(FormatTime.changeToSimpleDate(game.getFirst_release_date()));
 		if (game.getScreenshots() != null)
 			gameT.setScreenshots(transferScreenshot(game.getScreenshots(), "screenshot_med"));
 		if (game.getVideos() != null)
 			gameT.setVideos(transferVideo(game.getVideos()));
 		gameT.setCover(transferCover(game.getCover(), "cover_big"));
-	}
 
+	}
 	// public static void main(String[] args) {
 	// String str = InteractWithIGDB.getGameList("fallout", 0, 1);
 	// JsonParser parser = new JsonParser();

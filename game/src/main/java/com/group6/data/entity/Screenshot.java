@@ -11,11 +11,6 @@ public class Screenshot {
 	private int width;
 	private int height;
 	
-	public Screenshot(String cloudinary_id, int width, int height) {
-		this.cloudinary_id = cloudinary_id;
-		this.width = width;
-		this.height = height;
-	}
 	public String getCloudinary_id() {
 		return cloudinary_id;
 	}

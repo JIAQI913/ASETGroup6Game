@@ -1,4 +1,4 @@
-package com.group6.data.entity;
+package com.group6.data.dao;
 
 /**
  * Class about game's alternative name.

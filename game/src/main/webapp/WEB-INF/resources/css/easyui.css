@@ -963,6 +963,7 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  background-color: #FFFFFF;
 }
 .tabs-scrolling {
   margin-left: 18px;
@@ -1004,6 +1005,7 @@
   -moz-border-radius: 5px 5px 0 0;
   -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0;
+  background-color: #FFFFFF;
 }
 .tabs li.tabs-selected a.tabs-inner {
   font-weight: bold;
@@ -1062,6 +1064,7 @@
 }
 .tabs-title {
   font-size: 16px;
+  background-color: #FFFFFF;
 }
 .tabs-closable {
   padding-right: 8px;
@@ -1244,12 +1247,13 @@
 .tabs li.tabs-selected a.tabs-inner {
   background-color: #ffffff;
   color: #0E2D5F;
-  background: -webkit-linear-gradient(top,#EFF5FF 0,#ffffff 100%);
-  background: -moz-linear-gradient(top,#EFF5FF 0,#ffffff 100%);
-  background: -o-linear-gradient(top,#EFF5FF 0,#ffffff 100%);
-  background: linear-gradient(to bottom,#EFF5FF 0,#ffffff 100%);
+  font-family: Forte;
+  background: -webkit-linear-gradient(top,#ffffff 0,#ffffff 100%);
+  background: -moz-linear-gradient(top,#ffffff 0,#ffffff 100%);
+  background: -o-linear-gradient(top,#ffffff 0,#ffffff 100%);
+  background: linear-gradient(to bottom,#ffffff 0,#ffffff 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#ffffff,GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#ffffff,GradientType=0);
 }
 .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
   background: -webkit-linear-gradient(top,#ffffff 0,#EFF5FF 100%);
@@ -1277,17 +1281,17 @@
 }
 .tabs li a.tabs-inner {
   color: #0E2D5F;
-  background-color: #E0ECFF;
-  background: -webkit-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
-  background: -moz-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
-  background: -o-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
-  background: linear-gradient(to bottom,#EFF5FF 0,#E0ECFF 100%);
+  background-color: #FFFFFF;
+  background: -webkit-linear-gradient(top,#EFF5FF 0,#FFFFFF 100%);
+  background: -moz-linear-gradient(top,#FFFFFF 0,#FFFFFF 100%);
+  background: -o-linear-gradient(top,#FFFFFF 0,#FFFFFF 100%);
+  background: linear-gradient(to bottom,#FFFFFF 0,#FFFFFF 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#E0ECFF,GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF,endColorstr=#FFFFFF,GradientType=0);
 }
 .tabs-header,
 .tabs-tool {
-  background-color: #E0ECFF;
+  background-color: #ffffff;
 }
 .tabs-header-plain {
   background: transparent;
@@ -1303,7 +1307,7 @@
 .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-left .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-right .tabs li.tabs-selected a.tabs-inner {
-  border-color: #95B8E7;
+  border-color: #FFFFFF;
 }
 .tabs-p-tool a:hover,
 .tabs li a:hover.tabs-close,

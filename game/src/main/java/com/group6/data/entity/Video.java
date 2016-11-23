@@ -10,6 +10,10 @@ public class Video {
 	private String name;
 	private String video_id;
 	
+	public Video(){
+		name="null";
+		video_id="null";
+	}
 	public Video(String name, String video_id) {
 		this.name = name;
 		this.video_id = video_id;

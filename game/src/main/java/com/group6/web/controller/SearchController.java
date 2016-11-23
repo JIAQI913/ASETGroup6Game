@@ -26,6 +26,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.group6.data.entity.Game;
+import com.group6.data.entity.ID;
+import com.group6.data.entity.transfer.TransferJson;
+import com.group6.data.format.FormatName;
 import com.group6.web.interact.InteractWithIGDB;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
@@ -44,11 +47,12 @@ public class SearchController {
 	@RequestMapping("/Search")
 	public void SearchNameController(HttpServletRequest req, HttpServletResponse resp) {
 		ArrayList<Game> list = new ArrayList<Game>();
-		String searchName = req.getParameter("gameName");
+		String type=req.getParameter("type");
+		String name = FormatName.changeName(req.getParameter("name"));
 		int limit = Integer.parseInt(req.getParameter("limit"));
 		int offset = Integer.parseInt(req.getParameter("currentPage"))-1;
-		String response=InteractWithIGDB.getGameList(searchName, offset, limit);
-		String responseCount=InteractWithIGDB.getGameCount(searchName);
+		String response=InteractWithIGDB.getGameList(type ,name, offset, limit,"*","*","*","*");
+		String responseCount=InteractWithIGDB.getGameCount(name,"*","*","*","*");
 		try {
 			resp.getWriter().write("{\"gameCount\":"+responseCount+",\"gameDetail\":"+response+"}");
 		} catch (IOException e) {
@@ -97,6 +101,38 @@ public class SearchController {
 			// }
 	}
 
+	@RequestMapping("/AdvancedSearch")
+	public void AdvancedSearchNameController(HttpServletRequest req, HttpServletResponse resp) {
+		String platforms = FormatName.changeName(req.getParameter("platforms"));
+		String genres = FormatName.changeName(req.getParameter("genres"));
+		String themes = FormatName.changeName(req.getParameter("themes"));
+		String years = FormatName.changeName(req.getParameter("years"));
+//		System.out.println(platforms);System.out.println(genres);System.out.println(themes);System.out.println(years);
+//		String p=InteractWithIGDB.getType("platforms", platforms);
+//		String g=InteractWithIGDB.getType("genres", genres);
+//		String t=InteractWithIGDB.getType("themes", themes);
+//		System.out.println(p);System.out.println(g);System.out.println(t);
+		
+//		String platform=TransferJson.jsonToObject(p, ID.class).get(0).getId();
+//		String genre=TransferJson.jsonToObject(g, ID.class).get(0).getId();
+//		String theme=TransferJson.jsonToObject(t, ID.class).get(0).getId();
+//		String year=years+"-01-01";
+//		System.out.println(platform);System.out.println(genre);System.out.println(theme);System.out.println(year);
+		
+		ArrayList<Game> list = new ArrayList<Game>();
+		String type=req.getParameter("type");
+		String name = FormatName.changeName(req.getParameter("name"));
+		int limit = Integer.parseInt(req.getParameter("limit"));
+		int offset = Integer.parseInt(req.getParameter("currentPage"))-1;
+		String response=InteractWithIGDB.getGameList(type ,name, offset, limit,platforms,years,themes,genres);
+		String responseCount=InteractWithIGDB.getGameCount(name,platforms,years,themes,genres);
+		try {
+			resp.getWriter().write("{\"gameCount\":"+responseCount+",\"gameDetail\":"+response+"}");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 //	 @RequestMapping(value = "/SearchTodo")
 //	 @ResponseBody
 //	 public String SearchTodo(@RequestBody ModelAndView model)
